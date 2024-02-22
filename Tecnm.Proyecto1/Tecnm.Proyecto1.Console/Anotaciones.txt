@@ -1,0 +1,9 @@
+// Entidades
+Usuarios[nombre, ingreso,concepto,opcion]
+Transacciones[saldo]
+//Enums 
+No aplica
+//Conceptos
+A elección del usuario
+  
+
