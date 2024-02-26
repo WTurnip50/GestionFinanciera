@@ -24,7 +24,7 @@ public class Program
                 System.Console.WriteLine("¿Qué operación desea realizar?");
                 System.Console.Write("1 Ingresos, 2 Retiros, 3 Edo. de cuenta, 4 Presupuestos, 5 Salir: ");
                 var id = int.Parse(System.Console.ReadLine() ?? throw new InvalidOperationException());
-                var add = new Usuario { Opcion = id, nom_usuario = name};
+                var add = new Usuario { Opcion = id, Nom_usuario = name};
                 switch (id)
                 {
                     case 1:
@@ -38,12 +38,25 @@ public class Program
                             Usuario user = managers.setRetiroUsuario(t, add);
                             ingresos.Add(user);
                         }
+                        else
+                        {
+                            System.Console.WriteLine("Aún no haz hecho ningun movimiento.");
+                            System.Console.WriteLine("===================================");
+                        }
                         break;
                     case 3:
                         if (ingresos.Count > 0)
                         {
                             Transacciones t = managers.getSaldo(ingresos);
-                            System.Console.WriteLine("Saldo total:"+t.total);
+                            System.Console.WriteLine("===RESUMEN DEL ESTADO FINANCIERO===");
+                            System.Console.WriteLine("Ingresos: "+t.Ingresos);
+                            System.Console.WriteLine("Retiros: "+t.Retiros);
+                            System.Console.WriteLine("Saldo total :"+t.Total);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Aún no haz hecho ningún movimiento.");
+                            System.Console.WriteLine("===================================");
                         }
                         break;
                     case 4:
@@ -52,7 +65,7 @@ public class Program
                         salir = true;
                         break;
                     default:
-                        System.Console.WriteLine("Seleccione una opcion del menu");
+                        System.Console.WriteLine("Seleccione una opción del menú.");
                         break;
                 }
             }

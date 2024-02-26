@@ -4,8 +4,8 @@ namespace Tecnm.Proyecto1.Core.Entities;
 
 public class Usuario
 {
-    public string? nom_usuario { get; set;}
+    public string? Nom_usuario { get; set;}
     public double Ingresos { get; set; }
     public int Opcion { get; set; }
-    public string? concepto { get; set; }
+    public string? Concepto { get; set; }
 }

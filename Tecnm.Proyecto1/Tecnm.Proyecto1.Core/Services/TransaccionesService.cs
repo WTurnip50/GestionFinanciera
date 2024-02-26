@@ -13,10 +13,13 @@ public class TransaccionesService : ITransaccionesService
                                    throw new InvalidOperationException());
         System.Console.Write("Introduzca el concepto de la operación: ");
         var concepto = System.Console.ReadLine();
+        System.Console.WriteLine("Transacción realizada con éxito.");
+        System.Console.WriteLine("============================");
+        
         user.Ingresos = ingreso;
-        user.concepto = concepto;
+        user.Concepto = concepto;
         user.Opcion = usuario.Opcion;
-        user.nom_usuario = usuario.nom_usuario;
+        user.Nom_usuario = usuario.Nom_usuario;
         return user;
     }
 
@@ -38,13 +41,18 @@ public class TransaccionesService : ITransaccionesService
             }
         }
         saldo = ingresos - retiros;
-        var t = new Transacciones() { total = saldo};
+        var t = new Transacciones()
+        {
+            Total = saldo,
+            Ingresos = ingresos,
+            Retiros = retiros
+        };
         return t;
     }
 
     public Usuario Retiro(Transacciones transacciones, Usuario usuario)
     {
-        var saldo = transacciones.total;
+        var saldo = transacciones.Total;
         var user = new Usuario();
         
         var flag = false;
@@ -61,10 +69,12 @@ public class TransaccionesService : ITransaccionesService
             {
                 Console.Write("Introduzca el concepto de la operación: ");
                 var concepto = Console.ReadLine();
+                Console.WriteLine("Transacción realizada con éxito.");
+                Console.WriteLine("================================");
                 user.Ingresos = ingreso;
-                user.concepto = concepto;
+                user.Concepto = concepto;
                 user.Opcion = usuario.Opcion;
-                user.nom_usuario = usuario.nom_usuario;
+                user.Nom_usuario = usuario.Nom_usuario;
                 flag = true;
             }
         }
