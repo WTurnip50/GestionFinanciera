@@ -24,39 +24,21 @@ public class TransaccionesService : ITransaccionesService
 
     public Usuario categoria(Usuario usuario, int id)
     {
-        switch (id)
+        usuario.categoria = id switch
         {
-            case 1:
-                usuario.categoria = CategoriasType.Salario;
-                break;
-            case 2:
-                usuario.categoria = CategoriasType.Deposito;
-                break;
-            case 3:
-                usuario.categoria = CategoriasType.Efectivo;
-                break;
-            case 4:
-                usuario.categoria = CategoriasType.Transaccion;
-                break;
-            case 5:
-                usuario.categoria = CategoriasType.Comida;
-                break;
-            case 6:
-                usuario.categoria = CategoriasType.Transporte;
-                break;
-            case 7:
-                usuario.categoria = CategoriasType.Medicina;
-                break;
-            case 8:
-                usuario.categoria = CategoriasType.Hogar;
-                break;
-            case 9:
-                usuario.categoria = CategoriasType.Retiro;
-                break;
-            case 10:
-                usuario.categoria = CategoriasType.PagoServicio;
-                break;
-        }
+            0 => CategoriasType.Salario,
+            1 => CategoriasType.Deposito,
+            2 => CategoriasType.Efectivo,
+            3 => CategoriasType.Transaccion,
+            4 => CategoriasType.Comida,
+            5 => CategoriasType.Transporte,
+            6 => CategoriasType.Medicina,
+            7 => CategoriasType.Hogar,
+            8 => CategoriasType.Retiro,
+            9 => CategoriasType.PagoServicio,
+            10 => CategoriasType.Otros,
+            _ => usuario.categoria
+        };
         return usuario;
     }
 
