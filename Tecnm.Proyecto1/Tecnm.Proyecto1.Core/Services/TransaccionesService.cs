@@ -1,4 +1,6 @@
+using System.Runtime.InteropServices;
 using Tecnm.Proyecto1.Core.Entities;
+using Tecnm.Proyecto1.Core.Enums;
 using Tecnm.Proyecto1.Core.Services.Interfaces;
 
 namespace Tecnm.Proyecto1.Core.Services;
@@ -13,14 +15,49 @@ public class TransaccionesService : ITransaccionesService
                                    throw new InvalidOperationException());
         System.Console.Write("Introduzca el concepto de la operación: ");
         var concepto = System.Console.ReadLine();
-        System.Console.WriteLine("Transacción realizada con éxito.");
-        System.Console.WriteLine("============================");
-        
         user.Ingresos = ingreso;
         user.Concepto = concepto;
         user.Opcion = usuario.Opcion;
         user.Nom_usuario = usuario.Nom_usuario;
         return user;
+    }
+
+    public Usuario categoria(Usuario usuario, int id)
+    {
+        switch (id)
+        {
+            case 1:
+                usuario.categoria = CategoriasType.Salario;
+                break;
+            case 2:
+                usuario.categoria = CategoriasType.Deposito;
+                break;
+            case 3:
+                usuario.categoria = CategoriasType.Efectivo;
+                break;
+            case 4:
+                usuario.categoria = CategoriasType.Transaccion;
+                break;
+            case 5:
+                usuario.categoria = CategoriasType.Comida;
+                break;
+            case 6:
+                usuario.categoria = CategoriasType.Transporte;
+                break;
+            case 7:
+                usuario.categoria = CategoriasType.Medicina;
+                break;
+            case 8:
+                usuario.categoria = CategoriasType.Hogar;
+                break;
+            case 9:
+                usuario.categoria = CategoriasType.Retiro;
+                break;
+            case 10:
+                usuario.categoria = CategoriasType.PagoServicio;
+                break;
+        }
+        return usuario;
     }
 
     public Transacciones Saldo(List<Usuario> usuarios)
@@ -69,8 +106,6 @@ public class TransaccionesService : ITransaccionesService
             {
                 Console.Write("Introduzca el concepto de la operación: ");
                 var concepto = Console.ReadLine();
-                Console.WriteLine("Transacción realizada con éxito.");
-                Console.WriteLine("================================");
                 user.Ingresos = ingreso;
                 user.Concepto = concepto;
                 user.Opcion = usuario.Opcion;

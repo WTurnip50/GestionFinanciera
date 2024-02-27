@@ -8,4 +8,5 @@ public class Usuario
     public double Ingresos { get; set; }
     public int Opcion { get; set; }
     public string? Concepto { get; set; }
+    public CategoriasType categoria { get; set; }
 }

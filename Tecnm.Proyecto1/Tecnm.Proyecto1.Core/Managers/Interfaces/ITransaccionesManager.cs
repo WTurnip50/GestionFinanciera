@@ -5,4 +5,5 @@ public interface ITransaccionesManager
     Usuario SetIngresoUsuario(Usuario usuario);
     Transacciones GetSaldo(List<Usuario> usuarios);
     Usuario SetRetiroUsuario(Transacciones transacciones, Usuario usuario);
+    Usuario setCategoriaUsuario(Usuario usuario);
 }

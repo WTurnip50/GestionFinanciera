@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel.Design;
 using Microsoft.VisualBasic.CompilerServices;
 using Tecnm.Proyecto1.Core.Entities;
+using Tecnm.Proyecto1.Core.Enums;
 using Tecnm.Proyecto1.Core.Managers;
 using Tecnm.Proyecto1.Core.Services;
 namespace Tecnm.Proyecto1.Console;
@@ -15,6 +17,7 @@ public class Program
         List<Usuario> ingresos = new List<Usuario>();
         var service = new TransaccionesService();
         var managers = new TransaccionesManager(service);
+        var select = 0;
         //var saldo = 0;
         if (name != string.Empty)
         {
@@ -29,6 +32,9 @@ public class Program
                 {
                     case 1:
                         Usuario u = managers.setIngresoUsuario(add);
+                        var ing = u;
+                        select = Categoria();
+                        u = managers.setCategoriaUsuario(ing, id);
                         ingresos.Add(u);
                         break;
                     case 2:
@@ -36,6 +42,9 @@ public class Program
                         {
                             Transacciones t = managers.getSaldo(ingresos);
                             Usuario user = managers.setRetiroUsuario(t, add);
+                            select = Categoria();
+                            var ret = user;
+                            user = managers.setCategoriaUsuario(ret, select);
                             ingresos.Add(user);
                         }
                         else
@@ -70,5 +79,31 @@ public class Program
                 }
             }
         }
+    }
+    public static int Categoria()
+    {
+        var categorias = Enum.GetValues(typeof(CategoriasType));
+        int i = 0;
+        int select = 0;
+        bool flag = false;
+        while (!flag)
+        {
+            System.Console.WriteLine("Elige una categoria: ");
+            foreach (var item in categorias)
+            {
+                System.Console.Write($"{i} {item}, ");
+                i++;
+            }
+
+            select = int.Parse(System.Console.ReadLine() ?? throw new InvalidOperationException());
+            if (select != null)
+            {
+                System.Console.WriteLine("Transacción realizada con éxito.");
+                System.Console.WriteLine("============================");
+                flag = true;
+            }
+        }
+
+        return select;
     }
 }

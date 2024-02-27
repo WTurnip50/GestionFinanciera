@@ -1,6 +1,6 @@
 namespace Tecnm.Proyecto1.Core.Enums;
 
-public enum ConceptosType
+public enum CategoriasType
 {
     Salario,
     Deposito,

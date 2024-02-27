@@ -26,4 +26,9 @@ public class TransaccionesManager
     {
         return _service.Retiro(transacciones, usuario);
     }
+
+    public Usuario setCategoriaUsuario(Usuario usuario, int id)
+    {
+        return _service.categoria(usuario,id);
+    }
 }
