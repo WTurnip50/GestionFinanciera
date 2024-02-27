@@ -11,5 +11,6 @@ public enum CategoriasType
     Medicina,
     Hogar,
     Retiro,
-    PagoServicio
+    PagoServicio,
+    Otros
 }

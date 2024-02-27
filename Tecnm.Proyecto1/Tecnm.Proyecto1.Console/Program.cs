@@ -36,7 +36,7 @@ public class Program
                         Usuario u = managers.setIngresoUsuario(add);
                         var ing = u;
                         select = Categoria();
-                        u = managers.setCategoriaUsuario(ing, id);
+                        u = managers.setCategoriaUsuario(ing, select);
                         ingresos.Add(u);
                         break;
                     case 2:
