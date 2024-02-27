@@ -10,7 +10,7 @@ public class TransaccionesService : ITransaccionesService
     public Usuario Ingreso(Usuario usuario)
     {
         var user = new Usuario();
-        System.Console.Write("Introduzca la cantidad deseada: ");
+        System.Console.Write("Ingrese el monto a ingresar: ");
         var ingreso = double.Parse(System.Console.ReadLine() ??
                                    throw new InvalidOperationException());
         System.Console.Write("Introduzca el concepto de la operación: ");
@@ -95,10 +95,10 @@ public class TransaccionesService : ITransaccionesService
         var flag = false;
         while (!flag)
         {
-            System.Console.Write("Introduzca la cantidad deseada: ");
-            var ingreso = double.Parse(System.Console.ReadLine() ??
+            System.Console.Write("Ingrese el monto a retirar: ");
+            var retiro = double.Parse(System.Console.ReadLine() ??
                                        throw new InvalidOperationException());
-            if (ingreso > saldo)
+            if (retiro > saldo)
             {
                 Console.WriteLine(" No posee el saldo suficiente");
             }
@@ -106,7 +106,7 @@ public class TransaccionesService : ITransaccionesService
             {
                 Console.Write("Introduzca el concepto de la operación: ");
                 var concepto = Console.ReadLine();
-                user.Ingresos = ingreso;
+                user.Retiros = retiro;
                 user.Concepto = concepto;
                 user.Opcion = usuario.Opcion;
                 user.Nom_usuario = usuario.Nom_usuario;

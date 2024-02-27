@@ -15,6 +15,8 @@ public class Program
         string? name = System.Console.ReadLine();
         bool salir = false;
         List<Usuario> ingresos = new List<Usuario>();
+        //Prueba
+        List<Transacciones> transacciones = new List<Transacciones>();
         var service = new TransaccionesService();
         var managers = new TransaccionesManager(service);
         var select = 0;
@@ -61,6 +63,22 @@ public class Program
                             System.Console.WriteLine("Ingresos: "+t.Ingresos);
                             System.Console.WriteLine("Retiros: "+t.Retiros);
                             System.Console.WriteLine("Saldo total :"+t.Total);
+                            System.Console.WriteLine("===Ingresos===");
+                            foreach (var ingreso in ingresos)
+                            {
+                                if (ingreso.Opcion == 1)
+                                {
+                                    System.Console.WriteLine($"Ingreso: {ingreso.Ingresos}, Concepto: {ingreso.Concepto}, Categoria: {ingreso.categoria}");
+                                }
+                            }
+                            System.Console.WriteLine("===Retiros===");
+                            foreach (var retiro in ingresos)
+                            {
+                                if (retiro.Opcion == 2)
+                                {
+                                    System.Console.WriteLine($"Retiro: {retiro.Retiros}, Concepto: {retiro.Concepto}, Categoria: {retiro.categoria}");
+                                }
+                            }
                         }
                         else
                         {
