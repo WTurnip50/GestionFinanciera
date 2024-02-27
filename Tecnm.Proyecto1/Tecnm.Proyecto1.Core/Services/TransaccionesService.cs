@@ -73,7 +73,7 @@ public class TransaccionesService : ITransaccionesService
                     ingresos = ingresos + item.Ingresos;
                     break;
                 case 2:
-                    retiros = retiros + item.Ingresos;
+                    retiros = retiros + item.Retiros;
                     break;
             }
         }

@@ -16,7 +16,7 @@ public class Program
         bool salir = false;
         List<Usuario> ingresos = new List<Usuario>();
         //Prueba
-        List<Transacciones> transacciones = new List<Transacciones>();
+        List<Usuario> retiros = new List<Usuario>();
         var service = new TransaccionesService();
         var managers = new TransaccionesManager(service);
         var select = 0;
