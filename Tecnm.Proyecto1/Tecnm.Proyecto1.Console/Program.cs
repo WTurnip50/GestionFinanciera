@@ -34,8 +34,10 @@ public class Program
             {
                 System.Console.WriteLine("¿Qué operación desea realizar?");
                 System.Console.Write("1 Ingresos, 2 Retiros, 3 Edo. de cuenta, 4 Presupuestos, 5 Salir: ");
+
                 var id = int.Parse(System.Console.ReadLine() ?? throw new InvalidOperationException());
                 var add = new Usuario { Opcion = id, Nom_usuario = name};
+                
                 switch (id)
                 {
                     case 1:

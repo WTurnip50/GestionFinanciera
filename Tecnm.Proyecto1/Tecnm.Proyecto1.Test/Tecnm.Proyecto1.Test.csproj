@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tecnm.Proyecto1.Core\Tecnm.Proyecto1.Core.csproj" />
+  </ItemGroup>
+
 </Project>
