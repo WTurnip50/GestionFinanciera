@@ -10,15 +10,24 @@ public class TransaccionesService : ITransaccionesService
     public Usuario Ingreso(Usuario usuario)
     {
         var user = new Usuario();
-        System.Console.Write("Ingrese el monto a ingresar: ");
-        var ingreso = double.Parse(System.Console.ReadLine() ??
-                                   throw new InvalidOperationException());
-        System.Console.Write("Introduzca el concepto de la operación: ");
-        var concepto = System.Console.ReadLine();
-        user.Ingresos = ingreso;
-        user.Concepto = concepto;
-        user.Opcion = usuario.Opcion;
-        user.Nom_usuario = usuario.Nom_usuario;
+        while (true)
+        {
+            System.Console.Write("Ingrese el monto a ingresar: ");
+            var ingreso = 0.0;
+            var validar1 = double.TryParse(System.Console.ReadLine(), out ingreso);
+            if (validar1)
+            {
+                System.Console.Write("Introduzca el concepto de la operación: ");
+                var concepto = System.Console.ReadLine();
+                user.Ingresos = ingreso;
+                user.Concepto = concepto;
+                user.Opcion = usuario.Opcion;
+                user.Nom_usuario = usuario.Nom_usuario;
+                break;
+            }
+            System.Console.Write("Introduzca una cantidad valida.");
+        }
+       
         return user;
     }
 
@@ -78,21 +87,28 @@ public class TransaccionesService : ITransaccionesService
         while (!flag)
         {
             System.Console.Write("Ingrese el monto a retirar: ");
-            var retiro = double.Parse(System.Console.ReadLine() ??
-                                       throw new InvalidOperationException());
-            if (retiro > saldo)
+            double retiro = 0;
+            var validar = double.TryParse(System.Console.ReadLine(),out retiro);
+            if (validar)
             {
-                Console.WriteLine(" No posee el saldo suficiente");
+                if (retiro > saldo)
+                {
+                    Console.WriteLine(" No posee el saldo suficiente");
+                }
+                else
+                {
+                    Console.Write("Introduzca el concepto de la operación: ");
+                    var concepto = Console.ReadLine();
+                    user.Retiros = retiro;
+                    user.Concepto = concepto;
+                    user.Opcion = usuario.Opcion;
+                    user.Nom_usuario = usuario.Nom_usuario;
+                    flag = true;
+                }
             }
             else
             {
-                Console.Write("Introduzca el concepto de la operación: ");
-                var concepto = Console.ReadLine();
-                user.Retiros = retiro;
-                user.Concepto = concepto;
-                user.Opcion = usuario.Opcion;
-                user.Nom_usuario = usuario.Nom_usuario;
-                flag = true;
+                Console.WriteLine("Valor incorrecto, favor de introducir una cantidad en numeros.");
             }
         }
         return user;
@@ -107,36 +123,39 @@ public class TransaccionesService : ITransaccionesService
                 while (true)
                 {
                     System.Console.Write("Introduzca la cantidad que desea almacenar como meta:");
-                    cantidad = double.Parse(System.Console.ReadLine() ?? throw new InvalidOperationException());
-                    if (cantidad > 0)
+                    cantidad = 0.0;
+                    var validar = double.TryParse(System.Console.ReadLine(), out cantidad);
+                    if (validar)
                     {
-                        transacciones.Total = cantidad;
-                        transacciones.activo = true;
-                    }
-                    else
-                    {
+                        if (cantidad > 0)
+                        {
+                            transacciones.Total = cantidad;
+                            transacciones.activo = true;
+                            break;
+                        }
                         System.Console.Write("Introduzca una cantidad valida");
                         System.Console.WriteLine("============================");
                     }
-                    break;
                 }
                 break;
             case 2:
                 while (true)
                 {
                     System.Console.Write("Introduzca la cantidad que desea almacenar como presupuesto:");
-                    cantidad = double.Parse(System.Console.ReadLine() ?? throw new InvalidOperationException());
-                    if (cantidad > 0)
+                    cantidad = 0.0;
+                    var validar = double.TryParse(System.Console.ReadLine(), out cantidad);
+                    if (validar)
                     {
-                        transacciones.Total = cantidad;
-                        transacciones.activo = true;
-                    }
-                    else
-                    {
+                        if (cantidad > 0)
+                        {
+                            transacciones.Total = cantidad;
+                            transacciones.activo = true;
+                            break;
+                        }
                         System.Console.Write("Introduzca una cantidad valida");
                         System.Console.WriteLine("============================");
+
                     }
-                    break;
                 }
                 break;
         }
