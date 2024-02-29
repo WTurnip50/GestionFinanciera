@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Data.SqlTypes;
+using System.Security.Principal;
 using Microsoft.VisualBasic.CompilerServices;
 using Tecnm.Proyecto1.Core.Entities;
 using Tecnm.Proyecto1.Core.Enums;
@@ -16,9 +18,13 @@ public class Program
         bool salir = false;
         List<Usuario> ingresos = new List<Usuario>();
         //Prueba
-        List<Usuario> retiros = new List<Usuario>();
+        List<Transacciones> metas = new List<Transacciones>();
         var service = new TransaccionesService();
         var managers = new TransaccionesManager(service);
+        var meta = new Transacciones();
+        meta.Total = 0;
+        var presupuesto = new Transacciones();
+        presupuesto.Total = 0;
         var select = 0;
         //var saldo = 0;
         if (name != string.Empty)
@@ -48,6 +54,15 @@ public class Program
                             var ret = user;
                             user = managers.setCategoriaUsuario(ret, select);
                             ingresos.Add(user);
+                            if (user.Retiros > presupuesto.Total)
+                            {
+                                System.Console.WriteLine("Se ha superado el presupuesto establecido");
+                                presupuesto.Total = 0;
+                            }
+                            else
+                            {
+                                presupuesto.Total = presupuesto.Total - user.Retiros;
+                            }
                         }
                         else
                         {
@@ -87,6 +102,54 @@ public class Program
                         }
                         break;
                     case 4:
+                        bool access = false;
+                        while (!access)
+                        {
+                            System.Console.WriteLine("1. Meta, 2.Presupuesto");
+                            int op = int.Parse(System.Console.ReadLine());
+                            switch (op)
+                            {
+                             case 1:
+                                 var obj = meta;
+                                 obj.tipo = 1;
+                                 if (meta.Total == 0)
+                                 {
+                                     meta = managers.Set_Meta(obj);
+                                     access = true;
+                                 }
+                                 else
+                                 {
+                                     var saldo = managers.getSaldo(ingresos);
+                                     var avance = (saldo.Total * 100) / meta.Total;
+                                     if (avance >= 100)
+                                     {
+                                         System.Console.WriteLine("Su meta ya fue completada");
+                                         meta.Total = 0;
+                                         access = true;
+                                     }
+                                     else
+                                     {
+                                         System.Console.WriteLine($"Lleva completado un {avance}%");
+                                         access = true;
+                                     }
+                                 }
+                                 break;
+                             case 2:
+                                 var obj2 = presupuesto;
+                                 if (presupuesto.Total == 0)
+                                 {
+                                     obj2.tipo = 2;
+                                     presupuesto = managers.Set_Meta(obj2);
+                                     access = true;
+                                 }
+                                 else
+                                 {
+                                     System.Console.WriteLine($"Aun le falta por usar: {obj2.Total} ");
+                                     access = true;
+                                 }
+                                 break;
+                            }
+                        }
                         break;
                     case 5:
                         salir = true;

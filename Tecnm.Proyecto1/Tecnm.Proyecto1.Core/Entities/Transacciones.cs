@@ -7,4 +7,6 @@ public class Transacciones
     public double Total { get; set; }
     public double Ingresos { get; set; }
     public double Retiros { get; set; }
+    public bool activo { get; set; }
+    public int tipo { get; set; }
 }

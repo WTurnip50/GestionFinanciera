@@ -8,5 +8,5 @@ public interface ITransaccionesService
     Usuario categoria(Usuario usuario,int id);
     Transacciones Saldo(List<Usuario> usuarios);
     Usuario Retiro(Transacciones transacciones, Usuario usuario);
-
+    Transacciones Meta(Transacciones transacciones);
 }

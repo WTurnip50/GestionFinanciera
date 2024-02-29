@@ -97,4 +97,49 @@ public class TransaccionesService : ITransaccionesService
         }
         return user;
     }
+
+    public Transacciones Meta(Transacciones transacciones)
+    {
+        double cantidad;
+        switch (transacciones.tipo)
+        {
+            case 1:
+                while (true)
+                {
+                    System.Console.Write("Introduzca la cantidad que desea almacenar como meta:");
+                    cantidad = double.Parse(System.Console.ReadLine() ?? throw new InvalidOperationException());
+                    if (cantidad > 0)
+                    {
+                        transacciones.Total = cantidad;
+                        transacciones.activo = true;
+                    }
+                    else
+                    {
+                        System.Console.Write("Introduzca una cantidad valida");
+                        System.Console.WriteLine("============================");
+                    }
+                    break;
+                }
+                break;
+            case 2:
+                while (true)
+                {
+                    System.Console.Write("Introduzca la cantidad que desea almacenar como presupuesto:");
+                    cantidad = double.Parse(System.Console.ReadLine() ?? throw new InvalidOperationException());
+                    if (cantidad > 0)
+                    {
+                        transacciones.Total = cantidad;
+                        transacciones.activo = true;
+                    }
+                    else
+                    {
+                        System.Console.Write("Introduzca una cantidad valida");
+                        System.Console.WriteLine("============================");
+                    }
+                    break;
+                }
+                break;
+        }
+        return transacciones;
+    }
 }

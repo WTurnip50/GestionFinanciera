@@ -31,4 +31,9 @@ public class TransaccionesManager
     {
         return _service.categoria(usuario,id);
     }
+
+    public Transacciones Set_Meta(Transacciones transacciones)
+    {
+        return _service.Meta(transacciones);
+    }
 }
